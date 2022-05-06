@@ -5,7 +5,7 @@
     <app-input [control]="$any(registerForm).controls['address']" label="Address"></app-input>
     <app-input [control]="$any(registerForm).controls['phone']" label="Phone"></app-input>
 
-    <button type="submit" class="btn btn-success btn-lg mb-1" [disabled]="registerForm.invalid">Submit</button>
+    <button type="submit" class="btn btn-success btn-lg mb-1" [disabled]="registerForm.invalid">Submit</button><br>
   </form>
 
 
@@ -15,6 +15,7 @@
 
 
   <div class="alert alert-secondary">
+      --debug stuff--.
       <div>Form Content =>  {{ registerForm.value | json }}</div>
       <div>Form Valid => {{ registerForm.valid }}</div> 
       <div>Errors Name Fields => {{ registerForm.get('name')?.errors | json }}</div>

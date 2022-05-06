@@ -43,7 +43,8 @@ export class RegisterFormComponent implements OnInit {
 
   //handle form submit
   onSubmit(){
-    console.log("hello");
+    console.log(this.registerForm.value);
+    console.log(this.registerForm.value.name);
   }
 
 }
