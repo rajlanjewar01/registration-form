@@ -1,0 +1,40 @@
+<div class="form-outline mb-4">
+    <label class="form-label" for="form3Example1q">{{ label }}</label>
+    <input [formControl]="control" type="text" id="form3Example1q" class="form-control" />
+
+  <ng-container *ngIf="control.dirty && control.touched && control.errors"> <!--7-->
+    <ng-container *ngIf="control.errors">
+      <div class="alert alert-danger mt-2" *ngIf="control.errors?.['required']">
+          *Value is Required
+      </div>
+      <div class="alert alert-danger mt-2" *ngIf="control.errors?.['minlength']">
+          *Value must be longer,
+          Value you enter is {{ control.errors?.['minlength'].actualLength }}
+          character long but it must be atleast {{ control.errors?.['minlength'].requiredLength }}
+      </div>
+      <div *ngIf="control.errors?.['maxlength']" class="alert alert-danger mt-2">
+            Value is entered is {{ control.errors?.['maxlength'].actualLength }} but it cannot be longer than
+            {{ control.errors?.['maxlength'].requiredLength }} characters.
+      </div>
+      <div *ngIf="control.errors?.['pattern']" class="alert alert-danger mt-2">
+        Invalid input format, Please match the pattern.
+      </div>
+    </ng-container>
+  </ng-container>
+
+</div>
+
+  <!-- <div class="form-outline mb-4">
+    <label class="form-label" for="form3Example1q">Email Address</label>
+    <input formControlName="email" type="email" id="form3Example1q" class="form-control" />
+  </div>
+
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form3Example1q">Address</label>
+    <input formControlName="address" type="text" id="form3Example1q" class="form-control" />
+  </div>
+
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form3Example1q">Phone Number</label>
+    <input formControlName="phone" type="number" id="form3Example1q" class="form-control" />
+  </div> -->

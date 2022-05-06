@@ -1,0 +1,21 @@
+<form class="px-md-2" [formGroup]="registerForm" (ngSubmit)="onSubmit()">  <!--4-->
+    <!--8-->
+    <app-input [control]="$any(registerForm).controls['name']" label="Name"></app-input>
+    <app-input [control]="$any(registerForm).controls['email']" label="Email"></app-input>
+    <app-input [control]="$any(registerForm).controls['address']" label="Address"></app-input>
+    <app-input [control]="$any(registerForm).controls['phone']" label="Phone"></app-input>
+
+    <button type="submit" class="btn btn-success btn-lg mb-1" [disabled]="registerForm.invalid">Submit</button>
+  </form>
+
+
+
+
+
+
+
+  <div class="alert alert-secondary">
+      <div>Form Content =>  {{ registerForm.value | json }}</div>
+      <div>Form Valid => {{ registerForm.valid }}</div> 
+      <div>Errors Name Fields => {{ registerForm.get('name')?.errors | json }}</div>
+  </div>
