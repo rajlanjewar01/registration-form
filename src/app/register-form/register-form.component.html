@@ -19,6 +19,7 @@
 
 
   <div>
+    <button (click)="fetch()" class="btn btn-primary">View Registered Candidate</button>
     <table class="table" *ngIf="data">
       <thead>
         <tr>
@@ -37,6 +38,4 @@
         </tr>
       </tbody>
     </table>
-
-    <button (click)="fetch()" class="btn btn-primary">Fetch</button>
   </div>

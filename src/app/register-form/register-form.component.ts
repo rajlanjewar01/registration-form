@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatTableModule } from '@angular/material/table';
 
-import { FormGroup, FormControl, Validators } from '@angular/forms';   /////3, 5
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register-form',
@@ -14,8 +12,6 @@ export class RegisterFormComponent implements OnInit {
   user: any = {};
   data: any;
   
-
-  //////4, 6
   registerForm = new FormGroup({
     name: new FormControl('', [
       Validators.required,
@@ -39,14 +35,11 @@ export class RegisterFormComponent implements OnInit {
       Validators.minLength(10),
       Validators.maxLength(10)
     ])
-
   })
 
-  constructor() {
-   }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   //handle form submit
   onSubmit(){
@@ -59,12 +52,13 @@ export class RegisterFormComponent implements OnInit {
   addDetails(user:any){
     let users = [];
 
-    if(localStorage.getItem("Users")){
+    if(localStorage.getItem("Users")) {
       users = JSON.parse(localStorage.getItem('Users')!);
       users = [user, ...users];
-    }else{
+    } else {
       users = [user];
     }
+
     localStorage.setItem("Users", JSON.stringify(users));
 
     //reset the form
@@ -74,6 +68,6 @@ export class RegisterFormComponent implements OnInit {
   //fetch date
   fetch(){
     this.data = JSON.parse(localStorage.getItem("Users")!);
-   }
+  }
 
 }
