@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 
 import { FormGroup, FormControl, Validators } from '@angular/forms';   /////3, 5
 
@@ -10,6 +12,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';   /////3, 5
 export class RegisterFormComponent implements OnInit {
 
   user: any = {};
+  data: any;
+  
 
   //////4, 6
   registerForm = new FormGroup({
@@ -38,7 +42,8 @@ export class RegisterFormComponent implements OnInit {
 
   })
 
-  constructor() { }
+  constructor() {
+   }
 
   ngOnInit(): void {
   }
@@ -47,7 +52,6 @@ export class RegisterFormComponent implements OnInit {
   onSubmit(){
     //console.log(this.registerForm.value);
     //console.log(this.registerForm.value.name);
-
     this.user = Object.assign(this.user, this.registerForm.value);
     this.addDetails(this.user);
   }
@@ -66,5 +70,10 @@ export class RegisterFormComponent implements OnInit {
     //reset the form
     this.registerForm.reset();
   }
+
+  //fetch date
+  fetch(){
+    this.data = JSON.parse(localStorage.getItem("Users")!);
+   }
 
 }

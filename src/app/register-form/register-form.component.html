@@ -9,14 +9,34 @@
   </form>
 
 
-
-
-
-
-
-  <div class="alert alert-secondary">
+<br>
+  <!-- <div class="alert alert-secondary">
       --debug stuff--.
       <div>Form Content =>  {{ registerForm.value | json }}</div>
       <div>Form Valid => {{ registerForm.valid }}</div> 
       <div>Errors Name Fields => {{ registerForm.get('name')?.errors | json }}</div>
+  </div> -->
+
+
+  <div>
+    <table class="table" *ngIf="data">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Address</th>
+          <th scope="col">Phone number</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of data">
+          <td> {{ item.name }}</td>
+          <td> {{ item.email }}</td>
+          <td> {{ item.address }}</td>
+          <td> {{ item.phone }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button (click)="fetch()" class="btn btn-primary">Fetch</button>
   </div>
