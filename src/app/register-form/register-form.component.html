@@ -1,5 +1,4 @@
-<form class="px-md-2" [formGroup]="registerForm" (ngSubmit)="onSubmit()">  <!--4-->
-    <!--8-->
+<form class="px-md-2" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <app-input [control]="$any(registerForm).controls['name']" label="Name"></app-input>
     <app-input [control]="$any(registerForm).controls['email']" label="Email"></app-input>
     <app-input [control]="$any(registerForm).controls['address']" label="Address"></app-input>
@@ -18,23 +17,30 @@
   </div> -->
 
 
-  <div>
+  <div class="row">
     <button (click)="fetch()" class="btn btn-primary btn-sm">View Registered Candidate</button>
-    <table class="table" *ngIf="data">
+    <table class="table table-bordered table-hover table-responsive-xl mt-2">
       <thead>
         <tr>
+          <th scope="col">#</th>
           <th scope="col">Name</th>
           <th scope="col">Email</th>
           <th scope="col">Address</th>
           <th scope="col">Phone number</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of data">
+        <tr *ngFor="let item of data; let i = index">
+          <td> {{ i+1 }} </td>
           <td> {{ item.name }}</td>
           <td> {{ item.email }}</td>
           <td> {{ item.address }}</td>
           <td> {{ item.phone }}</td>
+          <td>
+            <button class="btn btn-sm btn-success" (click)="edit(this.i)">Edit</button>
+            <a href="javascript:void(0)" class="btn btn-sm btn-danger mt-1" (click)="delete(this.i)">Delete</a>
+          </td>
         </tr>
       </tbody>
     </table>

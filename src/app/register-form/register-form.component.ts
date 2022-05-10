@@ -9,9 +9,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class RegisterFormComponent implements OnInit {
 
+
   user: any = {};
   data: any;
-  
+
   registerForm = new FormGroup({
     name: new FormControl('', [
       Validators.required,
@@ -37,37 +38,79 @@ export class RegisterFormComponent implements OnInit {
     ])
   })
 
-  constructor() {}
+  constructor() {
+    this.fetch();
+  }
+  ngOnInit(): void {
+    
+  }
 
-  ngOnInit(): void {}
 
   //handle form submit
   onSubmit(){
-    //console.log(this.registerForm.value);
-    //console.log(this.registerForm.value.name);
     this.user = Object.assign(this.user, this.registerForm.value);
-    this.addDetails(this.user);
+    this.add();
   }
 
-  addDetails(user:any){
+  add(){
     let users = [];
 
     if(localStorage.getItem("Users")) {
       users = JSON.parse(localStorage.getItem('Users')!);
-      users = [user, ...users];
+      users = [this.user, ...users];
     } else {
-      users = [user];
+      users = [this.user];
     }
 
     localStorage.setItem("Users", JSON.stringify(users));
-
-    //reset the form
     this.registerForm.reset();
+
+    this.fetch();
   }
 
-  //fetch date
+
   fetch(){
     this.data = JSON.parse(localStorage.getItem("Users")!);
   }
 
+
+  edit(index:any){
+
+  //let studObj = this.user[index];
+  // this.registerForm.setValue({'name': 'steve','email': 'a@gmail.com','phone': '0000000000','address': 'addr'}); 
+
+    let user = JSON.parse(localStorage.getItem('Users')!);
+
+    //console.log(user[index]); //contains all array elements
+
+    let users = user[index];
+
+    this.registerForm.setValue({'name': user[index].name, 'email': user[index].email,'phone': user[index].phone,'address':user[index].address}); 
+    
+
+    // user.forEach((obj: any) => {
+    //   this.registerForm.setValue({'name': obj.name,'email': obj.email,'phone': obj.phone,'address':obj.address}); 
+    // });
+  }
+
+
+  delete(index: number){
+    this.user.splice(index, 1);
+    localStorage.setItem("Users", JSON.stringify(this.user));
+
+    this.fetch();
+  }
+
+
+
 }
+
+
+
+
+
+
+function users(users: any): string {
+  throw new Error('Function not implemented.');
+}
+

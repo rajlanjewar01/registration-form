@@ -6,6 +6,11 @@ import { ReactiveFormsModule } from '@angular/forms'; /////1*
 import { AppComponent } from './app.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { InputComponent } from './input/input.component';
+import { Routes, RouterModule } from '@angular/router';
+
+const routes: Routes = [
+  { path: '/id=', component: RegisterFormComponent },
+];
 
 @NgModule({
   declarations: [
@@ -15,7 +20,7 @@ import { InputComponent } from './input/input.component';
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule,  ///////2*
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
