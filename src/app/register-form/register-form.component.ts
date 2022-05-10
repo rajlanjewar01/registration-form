@@ -12,6 +12,7 @@ export class RegisterFormComponent implements OnInit {
 
   user: any = {};
   data: any;
+  selectedIndex = -1;
 
   registerForm = new FormGroup({
     name: new FormControl('', [
@@ -62,6 +63,26 @@ export class RegisterFormComponent implements OnInit {
       users = [this.user];
     }
 
+    //update
+    if(this.selectedIndex === -1){ ///error push is not function-------need to be fixed---
+      this.user.push(users);
+    }else{
+      console.log(this.selectedIndex); //give us index of array elements
+      console.log(users); //display all array elements
+      console.log(this.user);  //return array of indivisual elements
+
+
+
+
+      //this.user.splice(this.selectedIndex, 1, users);
+
+      this.user.splice(this.selectedIndex, 1, this.user);
+
+
+
+
+    }
+
     localStorage.setItem("Users", JSON.stringify(users));
     this.registerForm.reset();
 
@@ -74,8 +95,9 @@ export class RegisterFormComponent implements OnInit {
   }
 
 
-  edit(index:any){
 
+  edit(index:any){
+    this.selectedIndex = index;
   //let studObj = this.user[index];
   // this.registerForm.setValue({'name': 'steve','email': 'a@gmail.com','phone': '0000000000','address': 'addr'}); 
 
@@ -86,7 +108,6 @@ export class RegisterFormComponent implements OnInit {
     let users = user[index];
 
     this.registerForm.setValue({'name': user[index].name, 'email': user[index].email,'phone': user[index].phone,'address':user[index].address}); 
-    
 
     // user.forEach((obj: any) => {
     //   this.registerForm.setValue({'name': obj.name,'email': obj.email,'phone': obj.phone,'address':obj.address}); 
