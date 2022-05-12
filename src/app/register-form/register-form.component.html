@@ -18,7 +18,7 @@
 
 
   <div class="row">
-    <button (click)="fetch()" class="btn btn-primary btn-sm">View Registered Candidate</button>
+    <!-- <button (click)="fetch()" class="btn btn-primary btn-sm">View Registered Candidate</button> -->
     <table class="table table-bordered table-hover table-responsive-xl mt-2">
       <thead>
         <tr>
@@ -39,7 +39,7 @@
           <td> {{ item.phone }}</td>
           <td>
             <button class="btn btn-sm btn-success" (click)="edit(this.i)">Edit</button>
-            <a href="javascript:void(0)" class="btn btn-sm btn-danger mt-1" (click)="delete(this.i)">Delete</a>
+            <a href="javascript:void(0)" class="btn btn-sm btn-danger mt-1">Delete</a>
           </td>
         </tr>
       </tbody>

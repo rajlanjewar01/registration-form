@@ -1,3 +1,4 @@
+import { ConditionalExpr } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -58,34 +59,29 @@ export class RegisterFormComponent implements OnInit {
 
     if(localStorage.getItem("Users")) {
       users = JSON.parse(localStorage.getItem('Users')!);
-      users = [this.user, ...users];
+      users = [...users, this.user];
     } else {
       users = [this.user];
+      //console.log("inside else");  //return if local storage [Users] is not set (local storage is empty)
     }
 
     //update
-    if(this.selectedIndex === -1){ ///error push is not function-------need to be fixed---
-      this.user.push(users);
-    }else{
-      console.log(this.selectedIndex); //give us index of array elements
-      console.log(users); //display all array elements
-      console.log(this.user);  //return array of indivisual elements
+    if(this.selectedIndex === -1){ 
+      var data = new Array();
+      data.push(users);
+    }
+    else
+    {
+      users.splice(this.selectedIndex, 1, users[this.selectedIndex]);
 
-
-
-
-      //this.user.splice(this.selectedIndex, 1, users);
-
-      this.user.splice(this.selectedIndex, 1, this.user);
-
-
-
-
+      //console.log(this.selectedIndex); //give us index of array elements
+      //console.log(users); //display all array elements
+      //console.log(this.user);  //return array of indivisual element
     }
 
     localStorage.setItem("Users", JSON.stringify(users));
+    
     this.registerForm.reset();
-
     this.fetch();
   }
 
@@ -94,33 +90,29 @@ export class RegisterFormComponent implements OnInit {
     this.data = JSON.parse(localStorage.getItem("Users")!);
   }
 
-
-
   edit(index:any){
     this.selectedIndex = index;
-  //let studObj = this.user[index];
-  // this.registerForm.setValue({'name': 'steve','email': 'a@gmail.com','phone': '0000000000','address': 'addr'}); 
-
     let user = JSON.parse(localStorage.getItem('Users')!);
-
-    //console.log(user[index]); //contains all array elements
-
     let users = user[index];
 
     this.registerForm.setValue({'name': user[index].name, 'email': user[index].email,'phone': user[index].phone,'address':user[index].address}); 
-
-    // user.forEach((obj: any) => {
-    //   this.registerForm.setValue({'name': obj.name,'email': obj.email,'phone': obj.phone,'address':obj.address}); 
-    // });
   }
 
 
+
+
+
+
+
+
+  /*
   delete(index: number){
     this.user.splice(index, 1);
     localStorage.setItem("Users", JSON.stringify(this.user));
 
     this.fetch();
   }
+  */
 
 
 
